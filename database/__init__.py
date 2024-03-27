@@ -1,6 +1,6 @@
-from .database import InMemDB
+from .database import InMemDB as DB
 
 
 __all__ = [
-    "InMemDB",
+    "DB",
 ]

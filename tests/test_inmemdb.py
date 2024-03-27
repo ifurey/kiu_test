@@ -1,10 +1,9 @@
 import unittest
 
-from database import InMemDB
-from models import BaseModel
+from database.database import InMemDB
 
 
-class MockModel(BaseModel):
+class MockModel():
     pass
 
 class TestInMemDB(unittest.TestCase):
@@ -44,4 +43,9 @@ class TestInMemDB(unittest.TestCase):
         db = self._populate_db(amount=4)
         mocked_items = list(db.select(MockModel, filter_logic=lambda x: x.id > 1))
         self.assertEqual(mocked_items, db.data[MockModel][2:])
+    
+    def test_db_works_as_singleton(self):
+        db1 = InMemDB()
+        db2 = InMemDB()
+        self.assertIs(db1, db2)
  
