@@ -7,8 +7,6 @@ db_session = DB()
 
 
 class BaseModel():
-    """Base model class. Any new instance is directly added to the DB.
-    """
     id: int
 
     def __init__(self, **kwargs) -> None:
