@@ -21,7 +21,7 @@ Se pide:
 
 All the project is developed using Python built-in libraries. So no instalations or virtual environment is needed.
 
-There is a small HTTP server inveved within the main program to get the daily report. This report lists:
+There is a small HTTP server embedded within the main program to get the daily package report. This report lists:
  * The request date to report
  * Total packages
  * Total money collected
@@ -49,7 +49,7 @@ python main.py
 Server started http://localhost:8080
  ``` 
 
-The dates displayed are the ones prepolulated in the database to be queried.
+The dates displayed are the ones prepolulated in the database that may queried.
 
 ### Get the daily packages report
 
@@ -62,7 +62,7 @@ For checking other date's reports you may add querys to the url with the year, m
 
 ## Modules
 
-The main modules of the poject are:
+The main modules of the poject are
  
  ### database
 
