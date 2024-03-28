@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date as date_cls
 
 from database import DB
 
@@ -12,9 +12,15 @@ class BaseModel():
     id: int
 
     def __init__(self, **kwargs) -> None:
+        self.validators(**kwargs)
         for field, value in kwargs.items():
             setattr(self, field, value)
         db_session.add(self)
+
+    def validators(self, **kwargs) -> None:
+        """Method to implement model validators
+        Should raise an exception if something is wrong."""
+        pass
 
 
 class Client(BaseModel):
@@ -31,7 +37,7 @@ class Travel(BaseModel):
     """Model for Travel"""
     origin: Airport
     destination: Airport
-    date: date
+    date: date_cls = date_cls.today()
 
 
 class Package(BaseModel):
@@ -39,8 +45,10 @@ class Package(BaseModel):
     client: Client
     travel: Travel
 
-    def __init__(self, **kwargs) -> None:
+    def validators(self, **kwargs) -> None:
         client = kwargs.get("client")
-        if not type(client) is Client or getattr(client, 'id', None) is None:
+        travel = kwargs.get("travel")
+        if not type(client) is Client or not db_session.exist(client):
             raise ValueError("Invalid client for package.")
-        super().__init__(**kwargs)
+        if not type(travel) is Travel or not db_session.exist(travel):
+            raise ValueError("Invalid travel for package.")
