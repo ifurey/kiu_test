@@ -66,12 +66,12 @@ def post_travel(**kwargs) -> bool:
 
 def post_package(**kwargs) -> bool:
     try:
-        travel = list(db.select(Airport, filter_logic=lambda x: x.id == kwargs.get("travel")))[0]
+        travel = list(db.select(Travel, filter_logic=lambda x: x.id == kwargs.get("travel")))[0]
     except IndexError:
         return False
 
     try:
-        client = list(db.select(Airport, filter_logic=lambda x: x.name == kwargs.get("client")))
+        client = list(db.select(Client, filter_logic=lambda x: x.name == kwargs.get("client")))[0]
     except IndexError:
         return False
     
