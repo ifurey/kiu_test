@@ -48,4 +48,11 @@ class TestInMemDB(unittest.TestCase):
         db1 = InMemDB()
         db2 = InMemDB()
         self.assertIs(db1, db2)
+
+    def test_exist(self):
+        db = InMemDB()
+        mocked_item = MockModel()
+        db.add(mocked_item)
+
+        self.assertTrue(db.exist(mocked_item))
  

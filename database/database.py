@@ -36,3 +36,6 @@ class InMemDB(object):
             Iterable with filtered entries in the table.
         """
         return filter(filter_logic, self.data.get(table, []))
+
+    def exist(self, item: type) -> bool:
+        return item in self.data.get(type(item), [])
