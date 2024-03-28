@@ -60,6 +60,29 @@ For checking other date's reports you may add querys to the url with the year, m
 
 [http://localhost:8080/?year=2024&month=02&day=15](http://localhost:8080/?year=2024&month=02&day=15)
 
+### Add entries to the database
+
+Using POST requests to the models endpoints it is posible add entries to the database.
+Example using curl program:
+
+```bash
+# Adding a Client
+curl -d '{ "name": "Lolo" }' localhost:8080/client
+
+# Adding two Airports
+curl -d '{ "name": "Aeroparque" }' localhost:8080/airport
+curl -d '{ "name": "Ezeiza" }' localhost:8080/airport
+
+# Adding a Travel
+curl -d '{"destination":"Aeroparque", "origin":"Ezeiza", "date":"2024-06-16"}' localhost:8080/travel
+
+# Adding a Package
+curl -d '{ "travel": 4, "client": "Lolo" }' localhost:8080/package
+```
+
+After executing above comments, if going to [http://localhost:8080/?year=2024&month=02&day=15](http://localhost:8080/?year=2024&month=06&day=16)
+will at least bring up the package just added.
+
 ## Modules
 
 The main modules of the poject are
